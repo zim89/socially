@@ -4,7 +4,10 @@ import { Navbar } from '@/components/navbar'
 import { Providers } from './providers'
 import './globals.css'
 import { ClerkProvider } from '@clerk/nextjs'
+import { NextSSRPlugin } from '@uploadthing/react/next-ssr-plugin'
+import { extractRouterConfig } from 'uploadthing/server'
 import { Sidebar } from '@/components/sidebar'
+import { ourFileRouter } from './api/uploadthing/core'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -32,6 +35,7 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
+          <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
           <Providers>
             <div className='min-h-screen'>
               <Navbar />

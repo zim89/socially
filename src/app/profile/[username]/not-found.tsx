@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowLeftIcon, HomeIcon } from 'lucide-react'
+import { HomeIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 

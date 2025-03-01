@@ -138,10 +138,11 @@ export function PostCard({
 
           {/* POST IMAGE */}
           {post.image && (
-            <div className='overflow-hidden rounded-lg'>
+            <div className='relative h-64 overflow-hidden rounded-lg'>
               <Image
                 src={post.image}
                 alt='Post content'
+                fill
                 className='h-auto w-full object-cover'
               />
             </div>

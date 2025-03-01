@@ -1,10 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { createPost } from '@/actions/post.actions'
 import { useUser } from '@clerk/nextjs'
 import { ImageIcon, Loader2Icon, SendIcon } from 'lucide-react'
 import toast from 'react-hot-toast'
+import { ImageUpload } from './image-upload'
 import { Avatar, AvatarImage } from './ui/avatar'
 import { Button } from './ui/button'
 import { Card, CardContent } from './ui/card'
@@ -39,6 +40,10 @@ export function CreatePost() {
     }
   }
 
+  useEffect(() => {
+    console.log('[imageUrl]: ', imageUrl)
+  }, [imageUrl])
+
   return (
     <Card className='mb-6'>
       <CardContent className='pt-6'>
@@ -56,8 +61,18 @@ export function CreatePost() {
             />
           </div>
 
+          {/* UPLOAD IMAGE */}
           {(showImageUpload || imageUrl) && (
-            <div className='rounded-lg border p-4'>{/* Upload image */}</div>
+            <div className='rounded-lg border p-4'>
+              <ImageUpload
+                endpoint='postImage'
+                value={imageUrl}
+                onChange={url => {
+                  setImageUrl(url)
+                  if (!url) setShowImageUpload(false)
+                }}
+              />
+            </div>
           )}
 
           <div className='flex items-center justify-between border-t pt-4'>
